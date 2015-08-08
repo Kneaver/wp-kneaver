@@ -1,0 +1,22 @@
+{
+  "name": "wp-kneaver",
+  "description": "Kneaver for Wordpress",
+  "version": "1.0.52",
+  "private": true,
+  "os": [
+    "win32",
+    "linux"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-watch": "*",
+    "less-middleware": "1.0.3"
+  }
+}
