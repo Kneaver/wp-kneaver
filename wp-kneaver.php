@@ -66,9 +66,9 @@ function process_template0( $args, $group, $Tpl, $TplElem, $TPLIndicators, $Exce
           $content = get_the_excerpt();
         else
           $content = get_the_content_with_formatting();
-        $title = get_the_title( $post);
-        $url = get_permalink( $post);
-        $slug = get_post_field( "post_name", $post);
+        $title = get_the_title();
+        $url = get_permalink();
+        $slug = get_post_field( "post_name");
         {
             $elem = $TplElem;
             $elem = str_replace( '$pos', $pos, $elem);
@@ -689,7 +689,7 @@ EOT;
 	    define( 'WPKneaver_CLIENT_URI', plugins_url('/client', __FILE__ ));
 	    define( 'CDNMin', '.min');
 	    define( 'BootstrapCDN', '//netdna.bootstrapcdn.com/bootstrap/4.3.1');
-	    define( 'FontAwesomeCDN', '//netdna.bootstrapcdn.com/font-awesome/4.7.0');
+	    define( 'FontAwesomeCDN', '//netdna.bootstrapcdn.com/font-awesome/4.4.0');
 	    define( 'RobotoCDN', constant( 'WPKneaver_ASSET_URI'));
 	}
 	else
@@ -699,8 +699,8 @@ EOT;
 		define( 'WPKneaver_ASSET_URI', '//localhost/assets');
 		    
 	    define( 'CDNMin', '');
-	    define( 'BootstrapCDN', constant( 'WPKneaver_ASSET_URI/boostrap4.3.1'));
-	    define( 'FontAwesomeCDN', constant( 'WPKneaver_ASSET_URI'));
+	    define( 'BootstrapCDN', constant( 'WPKneaver_ASSET_URI') . '/bootstrap4.3.1');
+	    define( 'FontAwesomeCDN', constant( 'WPKneaver_ASSET_URI') . '/font-awesome-4.7.0');
 	    define( 'RobotoCDN', constant( 'WPKneaver_ASSET_URI'));
 	}
 	if (!wp_style_is( 'bs_bootstrap', 'registered' ))
