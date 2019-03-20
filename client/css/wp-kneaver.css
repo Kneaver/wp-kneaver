@@ -1,3 +1,27 @@
+/*
+Plugin Name: WP Kneaver
+Plugin URI: https://kneaver.com/products/features/wp-kneaver-wordpress-connector/
+Description: WP Kneaver introduces short codes to reuse Kneaver's contents inside Wordpress posts or pages.
+Version: 1.0.58
+Author: Bruno Winck at Kneaver Corp
+Author URI: https://kneaver.com/BrunoWinck
+License: GPLv2 or later
+*/
+/*  Copyright 2015  Kneaver Corp  (email : support@kneaver.com)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License, version 2, as 
+    published by the Free Software Foundation.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
 /* this was more pink, brick */
 /* background-color: #ffcc99;*/
 /* background-color: orange;*/
@@ -33,10 +57,11 @@ p.LastBloc {
 }
 img.KNVImage {
   /* used in KNVItemInline.foaf:Image */
-  /* useless ? display:block;*/
-  margin: 20px;
-  max-width: 450px;
-  float: right;
+  /*
+    margin: 20px;
+    max-width: 450px;
+    float: right;
+    */
 }
 .KNVInplaceHelp {
   background-color: yellow;
@@ -170,7 +195,7 @@ td.KNVEntranceFrame {
   border-collapse: collapse;
   padding: 10px;
 }
-/* Starting here is the MiniFrame tab on KNVDashboard */
+/* Starting here is the FrameMini tab on KNVDashboard */
 #PP {
   height: 100%;
   min-height: 500px;
@@ -181,24 +206,24 @@ td.KNVEntranceFrame {
 #PPMenu li {
   font-size: smaller;
 }
-/* is actually #PP iframe, no need of MiniFrame1 but accessed by getElementById */
-iframe.MiniFrames {
+/* is actually #PP iframe, no need of FrameMini1 but accessed by getElementById */
+iframe.FrameMinis {
   width: 100%;
   height: 100%;
   min-height: 500px;
 }
-div.MiniFrames {
+div.FrameMinis {
   width: 100%;
   height: 500px;
   min-height: 500px;
   overflow: scroll;
 }
-/* Ending here is the MiniFrame tab on KNVDashboard */
+/* Ending here is the FrameMini tab on KNVDashboard */
 .KNVSearchMini {
   /* display in tabs */
   margin: 0px;
   font-size: 11px ;
-  /* This was for Search in MiniFrame */
+  /* This was for Search in FrameMini */
 }
 .KNVSearchMini table.KNVSearch {
   width: 100%;
@@ -456,10 +481,10 @@ and add
   border-radius: 6px 0 6px 6px;
 }
 div.svg-containerA {
+  position: relative;
   width: 50%;
   height: 0;
   padding-top: 48%;
-  position: relative;
 }
 div.svg-containerA svg {
   position: absolute;
@@ -475,35 +500,24 @@ div.svg-containerB {
   overflow: hidden;
 }
 div.svg-containerB svg {
-  display: inline-block;
   position: absolute;
   top: 0;
   left: 0;
+  display: inline-block;
 }
 /* KNVTPLMap.dll uses directly this file */
-g.KNVCell {
-  shape: oval;
-  fill: #AAAAFF;
-  fillcolor: #AAAAFF;
-  fillcolor2: #5555AA;
-  stroke: #8888FF;
-  strokecolor: #8888FF;
-  strokeweight: 3;
-  stroke-width: 5px;
-  font-size: 25px;
-  xxbaseline-shift: 100%;
+text {
+  fill: #222222;
+  stroke: none;
+  stroke-width: 1;
 }
-rect.KNVCell {
-  shape: oval;
-  fill: #AAAAFF;
-  fillcolor: #AAAAFF;
-  fillcolor2: #5555AA;
-  stroke: #8888FF;
-  strokecolor: #8888FF;
-  strokeweight: 3;
-  stroke-width: 5px;
-  font-size: 25px;
-  xxbaseline-shift: 100%;
+.KNVLabel {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+  fill: #000000;
+  fill-opacity: 1;
+  stroke: none;
 }
 .KNVCell {
   shape: oval;
@@ -514,13 +528,24 @@ rect.KNVCell {
   strokecolor: #8888FF;
   strokeweight: 3;
   stroke-width: 5px;
-  font-size: 25px;
+  font-size: 15px;
   xxbaseline-shift: 100%;
 }
-text {
-  fill: #222222;
-  stroke: none;
-  stroke-width: 1;
+.KNVCentral {
+  marker: none;
+  stroke: #000000;
+  stroke-width: 0.9;
+  stroke-miterlimit: 4;
+  stroke-dasharray: none;
+  stroke-opacity: 1
+    fill:white;
+  fill-opacity: 1;
+  fill-rule: nonzero;
+  color: gray;
+  visibility: visible;
+  display: inline;
+  overflow: visible;
+  enable-background: accumulate;
 }
 .KNVStroke {
   stroke-width: 6px;
@@ -532,31 +557,7 @@ text {
   stroke: #FF0000;
   strokecolor: #FF8888;
 }
-.CentralEllipse {
-  color: gray;
-  fill: white;
-  fill-opacity: 1;
-  fill-rule: nonzero;
-  stroke: #000000;
-  stroke-width: 0.90000000000000002;
-  marker: none;
-  visibility: visible;
-  display: inline;
-  overflow: visible;
-  enable-background: accumulate;
-  stroke-miterlimit: 4;
-  stroke-dasharray: none;
-  stroke-opacity: 1;
-}
-.label {
-  font-size: 12px;
-  font-style: normal;
-  font-weight: normal;
-  fill: #000000;
-  fill-opacity: 1;
-  stroke: none;
-}
-.arrow {
+.KNVArrow {
   fill: none;
   stroke: green;
   stroke-width: 1px;
@@ -564,13 +565,36 @@ text {
   stroke-linejoin: miter;
   stroke-opacity: 1;
 }
-.cell .underline {
-  fill: none;
-  stroke: green;
+.KNVUnderline {
   stroke-width: 2px;
-  stroke-linecap: butt;
-  stroke-linejoin: miter;
-  stroke-opacity: 1;
+}
+/*
+no need now
+g.KNVCell
+{
+    font-size:15px;
+}
+
+g.KNVLabel
+{
+}
+*/
+/* 
+black fill bug on chrome is due to priority of user agent svg:a:link:hover (black) on parent of the a
+solution 1: place the a above the element decaring the fill (the g)
+solution 2: place the fill on the rect with a .KNVCell rect rule
+*/
+xlink:a:visited {
+  fill: inherit;
+  stroke: inherit;
+}
+a:visited {
+  fill: inherit;
+  stroke: inherit;
+}
+g.KNVCellx a:visited {
+  fill: inherit;
+  stroke: inherit;
 }
 .KNVItem {
   display: block;
@@ -582,8 +606,15 @@ a.KNVOutlineLink + .KNVToolbar {
   font-weight: bold;
   display: block;
 }
-.KNVHeader > span + .KNVToolbar {
+.KNVHeader > .KNVTitle + .KNVToolbar {
   margin-left: 6px;
+}
+.KNVHeader > .KNVTitle .KNVVignette {
+  margin-right: 1em;
+}
+ > .KNVVignette + .KNVHeader > .KNVTitle {
+  /* span or .KNVTitle ? */
+  margin-left: 1em;
 }
 .KNVHeader + .KNVItemBody {
   margin-top: 1em;
@@ -665,15 +696,6 @@ span.KNVInternalLink {
   position: relative;
   min-height: 100px;
 }
-.KNVHeader > h1 .KNVVignette {
-  margin-right: 1em;
-}
-.KNVHeader > span .KNVVignette {
-  margin-right: 1em;
-}
- > .KNVVignette + .KNVHeader > span {
-  margin-left: 1em;
-}
 span.KNVItemOutline > a > .KNVVignette,
 span.KNVItemOutline span > .KNVVignette {
   margin-right: 1em;
@@ -693,15 +715,126 @@ ul.KNVLinks li.KNVOutline + li.KNVInline {
 ul.KNVLinks li.KNVInline + li.KNVOutline {
   margin-top: 1em;
 }
-.KNVLevel2 > .KNVItemBody,
-.KNVLevel3 > .KNVItemBody,
-.KNVLevel4 > .KNVItemBody,
-.KNVLevel5 > .KNVItemBody,
-.KNVLevel6 > .KNVItemBody {
+:not(.KNVLevel1) > .KNVItemBody {
   margin-left: 3em;
 }
 .KNVLevel1 > .KNVHeader {
   border-radius: 10px;
   padding: 20px;
   margin-left: -20px;
+  margin-bottom: -20px;
+}
+.KNVConceptType .KNVPageHeader {
+  /* very pale blue */
+  background-color: #ccccff;
+}
+.KNVFieldType .KNVPageHeader {
+  /* good green */
+  background-color: #00ff00;
+}
+/* Darker more concrete, pale abstract*/
+.DivisionType .KNVPageHeader {
+  /* pink missing */
+  background-color: #ffcccc;
+}
+.KNVOrganizationType .KNVPageHeader {
+  /* orange */
+  background-color: #ff8000;
+}
+.KNVCompanyType .KNVPageHeader {
+  /* orange */
+  background-color: #ff8000;
+}
+.RoleType .KNVPageHeader {
+  /* melon missing */
+  background-color: #ffd899;
+}
+.ProcedureType .KNVPageHeader {
+  /* green */
+  background-color: #b3ff33;
+}
+.PersonType .KNVPageHeader {
+  /* Players */
+  /* yellow */
+  background-color: #ffff99;
+}
+.StoryType .KNVPageHeader {
+  /* event / fact grey missing */
+  background-color: #c0c0c0;
+}
+.StandardType .KNVPageHeader {
+  /* dense Blue*/
+  background-color: #9999ff;
+}
+.TypeType .KNVPageHeader {
+  /* Brown not set */
+  background-color: #994c00;
+}
+.LinkTypeType .KNVPageHeader {
+  /* Brick not set*/
+  background-color: #cc3200;
+}
+.KNVCommentType {
+  background-color: #F9F9F9;
+  /* light grey */
+  border-top: 1px solid lightgray;
+}
+.KNVNoteType {
+  background-color: #ffff99;
+  /* light yellow */
+  border: none;
+  position: relative;
+}
+.KNVNoteType > :before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 2em 2em 0;
+  border-style: solid;
+  border-color: #fff #fff #ffff66 #ffff66;
+  background: #ffff66;
+  /*
+      -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+      -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+      box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+      */
+  /* Firefox 3.0 damage limitation */
+  display: block;
+  width: 0;
+}
+.KNVPointType.KNVEdit {
+  border: 1px solid beige;
+  margin-left: -1px;
+}
+.KNVPointType.KNVEdit:hover {
+  border-color: 1px solid lightgray;
+}
+:not(.KNVLevel1).KNVPointType > .KNVItemBody {
+  /* KNV:PointType should not appear as a "sub item" compared to Body/Introduction of owner although it is precisely one */
+  margin-left: 0em;
+}
+.KNVLevel1.KNVPersonType > .KNVHeader {
+  background-color: #ffe2b5;
+}
+.KNVLevel1.KNVOrganizationType > .KNVHeader {
+  background-color: #afeeee;
+}
+.KNVLevel1.KNVToolType > .KNVHeader {
+  background-color: #87cefa;
+}
+.KNVLevel1.KNVFieldType > .KNVHeader {
+  background-color: #bebbb6;
+}
+.KNVLevel1.KNVBookType > .KNVHeader {
+  background-color: #ffe750;
+}
+.KNVLevel1.KNVKnowledgeSourceType > .KNVHeader {
+  background-color: #ffe4b5;
+}
+.KNVLevel1.KNVConceptType > .KNVHeader {
+  background-color: #ffeac1;
+}
+.KNVLevel1.KNVTaskType > .KNVHeader {
+  background-color: #d8bfd8;
 }

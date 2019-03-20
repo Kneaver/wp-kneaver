@@ -1,7 +1,7 @@
 {
   "name": "wp-kneaver",
   "description": "Kneaver for Wordpress",
-  "version": "1.0.52",
+  "version": "1.0.58",
   "private": true,
   "os": [
     "win32",

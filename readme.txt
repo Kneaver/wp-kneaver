@@ -1,10 +1,10 @@
-=== Plugin Name ===
+=== WP Kneaver ===
 Contributors: Bruno Winck, Kneaver Corp
 Donate link:
 Tags: Kneaver
 Requires at least: 4.1.0
-Tested up to: 4.2.4
-Stable tag: 1.0.52
+Tested up to: 4.3.1
+Stable tag: trunc
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +20,7 @@ Participate or Fork at https://github.com/Kneaver/wp-kneaver
 
 - Select Plugins/Add 
 - Choose Upload
-- Point to wp-kneaver.zip (http://kneaver.com/pdownload/wp-kneaver.zip)
+- Point to wp-kneaver.zip (https://kneaver.com/pdownload/wp-kneaver.zip)
 - Wordpress will install properly the plugin.
 - In push mode XMLRPC must be enabled on WordPress. It is now the default setting.
 
