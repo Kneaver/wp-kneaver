@@ -18,5 +18,8 @@
     "grunt-contrib-uglify": "~0.4.0",
     "grunt-contrib-watch": "*",
     "less-middleware": "1.0.3"
+  },
+  "peerDependencies": {
+    "kneaver-statics" : "../kneaver-statics"
   }
 }

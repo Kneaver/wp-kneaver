@@ -678,44 +678,46 @@ EOT;
     
     function register_standards()
     {
-	// defines can be made in wp-config.php
-	if (!defined('WPKneaver_CDN') || (constant( 'WPKneaver_CDN') != 'false'))
-	{
-	    error_log( "'WPKneaver_CDN' was not defined");
-	    if (!defined('WPKneaver_CDN'))
-		define( 'WPKneaver_CDN', 'true' );
-	    define( 'WPKneaver_ASSET_URI', '//cdn.kneaver.com/1.0.58/assets' );
-	    // define( 'WPKneaver_ASSET_URI', '/assets' );
-	    define( 'WPKneaver_CLIENT_URI', plugins_url('/client', __FILE__ ));
-	    define( 'CDNMin', '.min');
-	    define( 'BootstrapCDN', '//netdna.bootstrapcdn.com/bootstrap/4.3.1');
-	    define( 'FontAwesomeCDN', '//netdna.bootstrapcdn.com/font-awesome/4.4.0');
-	    define( 'RobotoCDN', constant( 'WPKneaver_ASSET_URI'));
-	}
-	else
-	{
-	    // error_log( "'WPKneaver_CDN' is false, using only local files");
-	    if (!defined('WPKneaver_ASSET_URI'))
-		define( 'WPKneaver_ASSET_URI', '//localhost/assets');
-		    
-	    define( 'CDNMin', '');
-	    define( 'BootstrapCDN', constant( 'WPKneaver_ASSET_URI') . '/bootstrap4.3.1');
-	    define( 'FontAwesomeCDN', constant( 'WPKneaver_ASSET_URI') . '/font-awesome-4.7.0');
-	    define( 'RobotoCDN', constant( 'WPKneaver_ASSET_URI'));
-	}
-	if (!wp_style_is( 'bs_bootstrap', 'registered' ))
-	    wp_register_style( 'bs_bootstrap', constant( 'BootstrapCDN') . '/css/bootstrap' . constant( 'CDNMin') . '.css' );
-        wp_register_style( 'awesome_css', constant( 'FontAwesomeCDN') . '/css/font-awesome' . constant( 'CDNMin') . '.css' );
-        wp_register_style( 'roboto_css', constant( 'RobotoCDN') . '/css/font-awesome.css' );
+        // kneaver-statics has been added as peerDependencies to reflect the runtime dependency
+
+        // defines can be made in wp-config.php
+        if (!defined('WPKneaver_CDN') || (constant( 'WPKneaver_CDN') != 'false'))
+        {
+            error_log( "'WPKneaver_CDN' was not defined");
+            if (!defined('WPKneaver_CDN'))
+          define( 'WPKneaver_CDN', 'true' );
+            define( 'WPKneaver_ASSET_URI', '//cdn.kneaver.com/1.0.58/assets' );
+            // define( 'WPKneaver_ASSET_URI', '/assets' );
+            define( 'WPKneaver_CLIENT_URI', plugins_url('/client', __FILE__ ));
+            define( 'CDNMin', '.min');
+            define( 'BootstrapCDN', '//netdna.bootstrapcdn.com/bootstrap/4.3.1');
+            define( 'FontAwesomeCDN', '//netdna.bootstrapcdn.com/font-awesome/4.4.0');
+            define( 'RobotoCDN', constant( 'WPKneaver_ASSET_URI'));
+        }
+        else
+        {
+            // error_log( "'WPKneaver_CDN' is false, using only local files");
+            if (!defined('WPKneaver_ASSET_URI'))
+          define( 'WPKneaver_ASSET_URI', '//localhost/assets');
+              
+            define( 'CDNMin', '');
+            define( 'BootstrapCDN', constant( 'WPKneaver_ASSET_URI') . '');
+            define( 'FontAwesomeCDN', constant( 'WPKneaver_ASSET_URI') . '');
+            define( 'RobotoCDN', constant( 'WPKneaver_ASSET_URI'));
+        }
+        if (!wp_style_is( 'bs_bootstrap', 'registered' ))
+            wp_register_style( 'bs_bootstrap', constant( 'BootstrapCDN') . '/css/bootstrap' . constant( 'CDNMin') . '.css' );
+            wp_register_style( 'awesome_css', constant( 'FontAwesomeCDN') . '/css/font-awesome' . constant( 'CDNMin') . '.css' );
+            wp_register_style( 'roboto_css', constant( 'RobotoCDN') . '/css/font-awesome.css' );
 	
-	if (!wp_script_is( 'bs_bootstrap', 'registered' ))
-	    wp_register_script( 'bs_bootstrap', constant( 'BootstrapCDN') . '/js/bootstrap' . constant( 'CDNMin') . '.js', array( 'jquery' ) );
+        if (!wp_script_is( 'bs_bootstrap', 'registered' ))
+            wp_register_script( 'bs_bootstrap', constant( 'BootstrapCDN') . '/js/bootstrap' . constant( 'CDNMin') . '.js', array( 'jquery' ) );
     
         // site_scripts contains validation/submission by ajax script for forms
         // made in head so that WPKneaverRunForm is available
         wp_register_script( 'wp_kneaver_scripts', plugins_url('/client/js/wp-kneaver.js', __FILE__), array( 'jquery' ), '1.0', false );
-	// this style is to make it easy for the theme to pick it
-	wp_register_script( 'twitter', '//platform.twitter.com/widgets.js', array( 'jquery' ), '1.0', true );
+        // this style is to make it easy for the theme to pick it
+        wp_register_script( 'twitter', '//platform.twitter.com/widgets.js', array( 'jquery' ), '1.0', true );
     }
     
     function enqueue_styles() 
