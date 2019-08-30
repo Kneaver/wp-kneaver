@@ -3,7 +3,7 @@
 Plugin Name: WP Kneaver
 Plugin URI: https://kneaver.com/products/features/wp-kneaver-wordpress-connector/
 Description: WP Kneaver introduces short codes to reuse Kneaver's contents inside Wordpress posts or pages.
-Version: 1.0.58
+Version: 1.0.60
 Author: Bruno Winck at Kneaver Corp
 Author URI: https://kneaver.com/BrunoWinck
 License: GPLv2 or later
@@ -686,7 +686,7 @@ EOT;
             error_log( "'WPKneaver_CDN' was not defined");
             if (!defined('WPKneaver_CDN'))
           define( 'WPKneaver_CDN', 'true' );
-            define( 'WPKneaver_ASSET_URI', '//cdn.kneaver.com/1.0.58/assets' );
+            define( 'WPKneaver_ASSET_URI', '//cdn.kneaver.com/1.0.60/assets' );
             // define( 'WPKneaver_ASSET_URI', '/assets' );
             define( 'WPKneaver_CLIENT_URI', plugins_url('/client', __FILE__ ));
             define( 'CDNMin', '.min');
