@@ -810,10 +810,10 @@ EOT;
         add_shortcode( 'knvedit', array(&$this, 'kneaver_edit'));
         add_shortcode( 'ExtraUserInviteToForm', array(&$this, 'ExtraUserInviteToForm'));
         
-	// examples wp-includes\default-filters.php and wp-content\plugins\tha-hooks-interface\tha-hooks-interface.php
-	add_action( 'plugins_loaded', array(&$this, 'on_loaded'));
-	add_action( 'init', array(&$this, 'on_init'));
-	add_action( 'wp_loaded', array(&$this, 'on_wp_loaded'));
+        // examples wp-includes\default-filters.php and wp-content\plugins\tha-hooks-interface\tha-hooks-interface.php
+        add_action( 'plugins_loaded', array(&$this, 'on_loaded'));
+        add_action( 'init', array(&$this, 'on_init'));
+        add_action( 'wp_loaded', array(&$this, 'on_wp_loaded'));
 	
         add_action( 'send_headers', array(&$this, 'add_header_xua') );
         // there is only one hook wp_enqueue_scripts 
@@ -824,6 +824,38 @@ EOT;
         add_filter( 'upload_mimes' , array(&$this, 'register_svg_mimetype') );
         add_filter( 'mce_buttons', array(&$this, 'register_buttons') );
         add_filter( 'mce_external_plugins', array(&$this, 'register_tinymce_javascript') );
+
+        add_filter('the_content', 'wp_kneaver_wpautop_filter', 9);
+        
+        function startsWith ($string, $startString) 
+        { 
+            $len = strlen($startString); 
+            return (substr($string, 0, $len) === $startString); 
+        } 
+        
+        function wp_kneaver_wpautop_filter($content) {
+          global $post;
+
+          // Testing at strat only prevent the setting to bubble up into including posts
+          if ( startsWith( $post->post_content, "<!-- NoBreaks -->"))
+          {
+            // Remove the wpautop filter and install a fake one
+            // do for both the_content and the_excerpt
+            remove_filter('the_content', 'wpautop');
+            remove_filter('the_excerpt', 'wpautop');
+            add_filter('the_content', function ($data) { return wpautop($data, false); } );
+            add_filter('the_excerpt', function ($data) { return wpautop($data, false); } );
+          } elseif ( startsWith( $post->post_content, "<!-- NoPs -->") ) {
+            // Remove the wpautop filter completely
+            remove_filter('the_content', 'wpautop');
+            remove_filter('the_excerpt', 'wpautop');
+          }
+          // I assume filters are reset for each posts, not need to put it back
+
+          return $content;
+        }
+        
+
     }
 }
 new WPKneaver();
