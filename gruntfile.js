@@ -1,6 +1,12 @@
 /*!
  * @description GRUNT! (.js)
  */
+/*global __dirname:true*/
+/*global require:true*/
+
+"use strict";
+
+var path = require( "path" );
 
 module.exports = function(grunt) {
 
@@ -38,14 +44,10 @@ module.exports = function(grunt) {
         dest: 'client/js/app.js'
       }
     },
-    less: {
-      development: {
-        options: {
-          paths: ['client/less'],
-          yuicompress: false
-        },
+    sass: {
+      dist: {
         files: {
-          'client/css/wp-kneaver.css': 'client/less/wp-kneaver.less'
+          'client/css/wp-kneaver.css': 'client/scss/wp-kneaver.scss',
         }
       }
     },
@@ -59,11 +61,11 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['Gruntfile.js','client/js/src/**/*.js','client/js/vendor/**/*.js'],
-        tasks: ['jshint','concat','less'],
+        tasks: ['jshint','concat','sass'],
       },
       less: {
-        files: 'client/less/*.less',
-        tasks: ['less'],
+        files: 'client/scss/*.scss',
+        tasks: ['sass'],
       }
       ,
       css: {
@@ -95,13 +97,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-uglify-es');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
   
-  grunt.registerTask('deploy', ['jshint','concat','uglify','less','cssmin']);
-  grunt.registerTask('default', ['jshint','concat','less','copy','watch']);
+  grunt.registerTask('deploy', ['jshint','concat','uglify','sass','cssmin']);
+  grunt.registerTask('default', ['jshint','concat','sass','copy','watch']);
 };
 
 /* EOF */

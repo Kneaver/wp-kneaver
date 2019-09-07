@@ -22,11 +22,11 @@ License: GPLv2 or later
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-// Thoses files are found in KNVStatics
-@import "../../../KNVStatics/KNVStatic/KNVTheme.less";
-@import "../../../KNVStatics/KNVStatic/KNVCore.less"; 
-@import "../../../KNVStatics/KNVStatic/KNVSVG.less";
+// Thoses files are found in kneaver-statics which is not in node_modules, only peer-dependency
+@import "../../../kneaver-statics/KNVStatic/KNVTheme.scss";
+@import "../../../kneaver-statics/KNVStatic/KNVCore.scss"; 
+@import "../../../kneaver-statics/KNVStatic/KNVSVG.scss";
 // Item added 2015-04-10 for vignettes  
-@import "../../../KNVStatics/KNVStatic/KNVItem.less";
+@import "../../../kneaver-statics/KNVStatic/KNVItem.scss";
 // KNVTypeStyle.less added 2015-10-23 for layout of KNV:NoteType  
-@import "../../../KNVStatics/KNVStatic/KNVTypeStyle.less";
+@import "../../../kneaver-statics/KNVStatic/KNVTypeStyle.scss";
