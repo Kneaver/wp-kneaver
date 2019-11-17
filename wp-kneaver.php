@@ -683,41 +683,44 @@ EOT;
         // defines can be made in wp-config.php
         if (!defined('WPKneaver_CDN') || (constant( 'WPKneaver_CDN') != 'false'))
         {
-            error_log( "'WPKneaver_CDN' was not defined");
-            if (!defined('WPKneaver_CDN'))
-          define( 'WPKneaver_CDN', 'true' );
-            define( 'WPKneaver_ASSET_URI', '//cdn.kneaver.com/1.0.60/assets' );
-            // define( 'WPKneaver_ASSET_URI', '/assets' );
-            define( 'WPKneaver_CLIENT_URI', plugins_url('/client', __FILE__ ));
-            define( 'CDNMin', '.min');
-            define( 'BootstrapCDN', '//netdna.bootstrapcdn.com/bootstrap/4.3.1');
-            define( 'FontAwesomeCDN', '//netdna.bootstrapcdn.com/font-awesome/4.4.0');
-            define( 'RobotoCDN', constant( 'WPKneaver_ASSET_URI'));
+          error_log( "'WPKneaver_CDN' was not defined");
+          if (!defined('WPKneaver_CDN'))
+            define( 'WPKneaver_CDN', 'true' );
+          define( 'WPKneaver_ASSET_URI', '//cdn.kneaver.com/1.0.62/assets' );
+          // define( 'WPKneaver_ASSET_URI', '/assets' );
+          define( 'WPKneaver_CLIENT_URI', plugins_url('/client', __FILE__ ));
+          define( 'CDNMin', '.min');
+          // Bootstrap in Theme 2019-11-17 define( 'BootstrapCDN', '//netdna.bootstrapcdn.com/bootstrap/4.3.1');
+          // Awesome in Theme 2019-11-17 define( 'FontAwesomeCDN', '//netdna.bootstrapcdn.com/font-awesome/4.4.0');
+          // Roboto in Theme 2019-11-17 define( 'RobotoCDN', constant( 'WPKneaver_ASSET_URI'));
         }
         else
         {
-            // error_log( "'WPKneaver_CDN' is false, using only local files");
-            if (!defined('WPKneaver_ASSET_URI'))
-          define( 'WPKneaver_ASSET_URI', '//localhost/assets');
+          // error_log( "'WPKneaver_CDN' is false, using only local files");
+          if (!defined('WPKneaver_ASSET_URI'))
+            define( 'WPKneaver_ASSET_URI', '//localhost/assets');
               
-            define( 'CDNMin', '');
-            define( 'BootstrapCDN', constant( 'WPKneaver_ASSET_URI') . '');
-            define( 'FontAwesomeCDN', constant( 'WPKneaver_ASSET_URI') . '');
-            define( 'RobotoCDN', constant( 'WPKneaver_ASSET_URI'));
+          define( 'CDNMin', '');
+          // Bootstrap in Theme 2019-11-17 define( 'BootstrapCDN', constant( 'WPKneaver_ASSET_URI') . '');
+          // Awesome in Theme 2019-11-17 define( 'FontAwesomeCDN', constant( 'WPKneaver_ASSET_URI') . '');
+          // Roboto in Theme 2019-11-17 define( 'RobotoCDN', constant( 'WPKneaver_ASSET_URI'));
         }
-        if (!wp_style_is( 'bs_bootstrap', 'registered' ))
-            wp_register_style( 'bs_bootstrap', constant( 'BootstrapCDN') . '/css/bootstrap' . constant( 'CDNMin') . '.css' );
-            wp_register_style( 'awesome_css', constant( 'FontAwesomeCDN') . '/css/font-awesome' . constant( 'CDNMin') . '.css' );
-            wp_register_style( 'roboto_css', constant( 'RobotoCDN') . '/css/font-awesome.css' );
+        // Bootstrap in Theme 2019-11-17 if (!wp_style_is( 'bs_bootstrap', 'registered' ))
+        // Bootstrap in Theme 2019-11-17   wp_register_style( 'bs_bootstrap', constant( 'BootstrapCDN') . '/css/bootstrap' . constant( 'CDNMin') . '.css' );
+        // Awesome in Theme 2019-11-17 wp_register_style( 'awesome_css', constant( 'FontAwesomeCDN') . '/css/font-awesome' . constant( 'CDNMin') . '.css' );
+        // Roboto in Theme 2019-11-17 !! link is wrong wp_register_style( 'roboto_css', constant( 'RobotoCDN') . '/css/font-awesome.css' );
 	
-        if (!wp_script_is( 'bs_bootstrap', 'registered' ))
-            wp_register_script( 'bs_bootstrap', constant( 'BootstrapCDN') . '/js/bootstrap' . constant( 'CDNMin') . '.js', array( 'jquery' ) );
+        // Bootstrap in Theme 2019-11-17 if (!wp_script_is( 'bs_bootstrap', 'registered' ))
+        // Bootstrap in Theme 2019-11-17     wp_register_script( 'bs_bootstrap', constant( 'BootstrapCDN') . '/js/bootstrap' . constant( 'CDNMin') . '.js', array( 'jquery' ) );
     
         // site_scripts contains validation/submission by ajax script for forms
         // made in head so that WPKneaverRunForm is available
-        wp_register_script( 'wp_kneaver_scripts', plugins_url('/client/js/wp-kneaver.js', __FILE__), array( 'jquery' ), '1.0', false );
+        // jQuery embedded in Theme 2019-11-17 
+        // add script in footer, not in <head>
+        wp_register_script( 'wp_kneaver_scripts', plugins_url('/client/js/wp-kneaver.js', __FILE__), array( /*'jquery'*/ ), '1.0', true );
         // this style is to make it easy for the theme to pick it
-        wp_register_script( 'twitter', '//platform.twitter.com/widgets.js', array( 'jquery' ), '1.0', true );
+        // jQuery in Theme 2019-11-17 
+        wp_register_script( 'twitter', '//platform.twitter.com/widgets.js', array( /*'jquery'*/ ), '1.0', true );
     }
     
     function enqueue_styles() 
@@ -725,7 +728,7 @@ EOT;
         $this->register_standards();
         // the theme css itself, although compulsory on disk will not be served by default
         //!! TODO wp_register_style( 'kneaver_css', get_template_directory_uri() . '/style.css', array( 'bs_bootstrap', 'awesome_css' ) );
-        // enqueue could have taken styles without registrating them
+        // enqueue could have taken styles without registering them
         //!! TODO wp_enqueue_style( array( 'kneaver_css' ));
         // Add scripts & styles with conditional
         wp_enqueue_style( 'wpkneaver_style', plugins_url( '/client/css/wp-kneaver.css', __FILE__ ) );
@@ -744,6 +747,7 @@ EOT;
     //        wp_register_script( 'bs_bootstrap', WPKneaver_ASSET_URI . '/js/bootstrap.js', array( 'jquery' ) );
 
         // For either a plugin or a theme, you can then enqueue the script:
+        // Bootstrap in Theme 2019-11-17 
         wp_enqueue_script( array( /*'bs_bootstrap', */ 'wp_kneaver_scripts' ) );
     }
 
@@ -775,7 +779,12 @@ EOT;
 
     function on_loaded() 
     {
-	// First
+      // First hook, same as plugins_loaded
+      /*
+      if ( !defined('BLA') ) {
+          define ( 'BLA', 'http://google.com' );
+      }
+      */
     }
 
     function on_init() 

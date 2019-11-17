@@ -2,12 +2,12 @@
 Plugin Name: WP Kneaver
 Plugin URI: https://kneaver.com/products/features/wp-kneaver-wordpress-connector/
 Description: WP Kneaver introduces short codes to reuse Kneaver's contents inside Wordpress posts or pages.
-Version: 1.0.60
+Version: 1.0.62
 Author: Bruno Winck at Kneaver Corp
 Author URI: https://kneaver.com/BrunoWinck
 License: GPLv2 or later
 */
-/*  Copyright 2015  Kneaver Corp  (email : support@kneaver.com)
+/*  Copyright 2019 Kneaver Corp  (email : support@kneaver.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -22,6 +22,7 @@ License: GPLv2 or later
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+// jQuery and bootstrap expected to be in theme
 // http://css-tricks.com/snippets/javascript/get-url-variables/
 function getQueryVariable(variable)
 {
