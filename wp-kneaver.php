@@ -591,81 +591,6 @@ class WPKneaver
         return "";
     }
 
-    // Registration form, can be placed anywhere
-    function ExtraUserInviteToForm($atts, $contents=NULL) 
-    {
-        // defined this target variable cuz was breaking wp-json on localhost:3093 = kneaver.com
-        // when using with gatsbyjs
-        $target = "";
-        extract(shortcode_atts(array(
-            'email'      => 'Email',
-            'emailplaceholder'      => 'Email here',
-            'name'      => 'Name',
-            'nameplaceholder'      => 'Name here',
-            'invite'    => 'Invite this guest',
-            'msgdefault' => 'Join us',
-            'msgok' => 'All done, Thank you!',
-            'msgfailed' => 'Something went wrong, try again or contact site administrator',
-            'landingpage' => '/',
-            'uilevel' => '1',
-            'token' => 'NA',
-            'hostname' => 'John Joe',
-            'hostnamehash' => '',
-            'spacename' => '',
-            'spacenamehash' => '',
-            'shareablesecret' => 'required',
-        ), $atts));
-
-        $contentstpl = <<<EOT
-<form id="ajax-invitation" class="form-horizontal wp-kneaver webhooks" role="form">
-<input type="hidden" name="LandingPath" value = "$landingpage" />
-<input type="hidden" name="UILevel" value = "$uilevel" />
-<input type="hidden" name="Token" value = "$token" />
-<input type="hidden" name="Verb" value = "InviteUser" />
-<input type="hidden" name="HostName" value="$hostname" />
-<input type="hidden" name="HostNameHash" value="$hostnamehash" />
-<input type="hidden" name="SpaceName" value="$spacename" />
-<input type="hidden" name="SpaceNameHash" value="$spacenamehash" />
-<input type="hidden" name="ShareableSecret" value="$shareablesecret" />
-  <div class="form-group">
-    <label for="name" class="col-sm-2 control-label">$name</label>
-    <div class="col-sm-10">
-      <input class="form-control" type="text" name="Name" required="required" size="20" value="" placeholder="$nameplaceholder" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="email" class="col-sm-2 control-label">$email</label>
-    <div class="col-sm-10">
-      <input class="form-control" type="email" name="Email" required="required" size="20" value="" placeholder="$emailplaceholder"/>
-    </div>
-  </div>
-  $contents
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <div class="checkbox">
-        <label>
-          <!-- <input type="checkbox" name="AcceptConditions" value="OFF" required="required" />Accept Condition of Use. -->By submitting this form you hereby agree to Kneaver Corp's <a href="/products/conditions.htm">Terms of Service</a>.
-        </label>
-      </div>
-    </div>
-  </div>
-  <div id="FormMessage" class="col-sm-offset-2 col-sm-10"><p>$msgdefault</p></div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-4">
-      <button type="submit" disabled="disabled" id="InviteButton" class="btn btn-primary btn-lg btn-block" >$invite</button>
-    </div>
-  </div>
-</fieldset>
-</form>
-<script>
-jQuery(document).ready(function ()
-{
-WPKneaverRunForm( "$msgok", "$msgfailed", "$target");
-});
-</script>
-EOT;
-        return do_shortcode( $contentstpl );
-    }
     function add_header_xua() 
     {
         // Access-Control-Allow-Credentials: true
@@ -710,16 +635,14 @@ EOT;
         // Roboto in Theme 2019-11-17 !! link is wrong wp_register_style( 'roboto_css', constant( 'RobotoCDN') . '/css/font-awesome.css' );
 	
         // Bootstrap in Theme 2019-11-17 if (!wp_script_is( 'bs_bootstrap', 'registered' ))
-        // Bootstrap in Theme 2019-11-17     wp_register_script( 'bs_bootstrap', constant( 'BootstrapCDN') . '/js/bootstrap' . constant( 'CDNMin') . '.js', array( 'jquery' ) );
+        // Bootstrap in Theme 2019-11-17     wp_register_script( 'bs_bootstrap', constant( 'BootstrapCDN') . '/js/bootstrap' . constant( 'CDNMin') . '.js', array( '' ) );
     
         // site_scripts contains validation/submission by ajax script for forms
         // made in head so that WPKneaverRunForm is available
-        // jQuery embedded in Theme 2019-11-17 
         // add script in footer, not in <head>
-        wp_register_script( 'wp_kneaver_scripts', plugins_url('/client/js/wp-kneaver.js', __FILE__), array( /*'jquery'*/ ), '1.0', true );
+        wp_register_script( 'wp_kneaver_scripts', plugins_url('/client/js/wp-kneaver.js', __FILE__), array( ), '1.0', true );
         // this style is to make it easy for the theme to pick it
-        // jQuery in Theme 2019-11-17 
-        wp_register_script( 'twitter', '//platform.twitter.com/widgets.js', array( /*'jquery'*/ ), '1.0', true );
+        wp_register_script( 'twitter', '//platform.twitter.com/widgets.js', array( ), '1.0', true );
     }
     
     function enqueue_styles() 

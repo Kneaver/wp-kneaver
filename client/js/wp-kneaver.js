@@ -40,6 +40,7 @@ function getQueryVariable(variable)
 
 function WPKneaverRunForm( MsgOK, MsgFailed, Target)
 {
+  #TODO remove use of jquery
 jQuery(document).ready(function ()
 {
     // after loading the DOM
