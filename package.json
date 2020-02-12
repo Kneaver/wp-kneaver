@@ -14,7 +14,7 @@
   "scripts": {
     "grunt": "grunt default",
     "deploy": "grunt deploy",
-    "push": "ssh 162.243.59.36 -l rsdev -i $HOME/.ssh/aws-kneaver-ncalifornia-bis \"cd /usr/local/websites/wp-kneaver && rm -f package*.json && git pull\""
+    "push": "ssh 162.243.59.36 -l rsdev -i $HOME/.ssh/aws-kneaver-ncalifornia \"cd /usr/local/websites/wp-kneaver && rm -f package*.json && git pull\""
   },
   "dependencies": {},
   "devDependencies": {

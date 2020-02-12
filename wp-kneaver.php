@@ -395,13 +395,12 @@ class WPKneaver
             'group'    => '',
             'post_type'    => 'child-post',
             'tpl'    => '$elems',
-            'tpl_elem1'    => '<section id="Section-$pos" class="$slug">',
+            'tpl_elem1'    => '<section id="$slug" class="$group">',
             'tpl_elem2'    => '<div class="container">',
             'tpl_end_elem1'    => '</section>',
             'tpl_end_elem2'    => '</div>',
             'tpl_indicators'    => '',
         ), $atts));
-
         $TplElem = 
         str_replace("QT", "\"", $tpl_elem1 . $tpl_elem2) .
         '$content' .
