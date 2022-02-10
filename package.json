@@ -28,7 +28,7 @@
     "grunt-contrib-watch": "1.1.0",
     "grunt-processhtml": "^0.4.2",
     "grunt-sass": "^2.0.0",
-    "node-sass": "^4.11.0"
+    "node-sass": "^7.0.0"
   },
   "peerDependencies": {
     "kneaver-statics": "../kneaver-statics"
